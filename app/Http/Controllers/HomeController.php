@@ -38,14 +38,21 @@ class HomeController extends Controller
         if($pilihtps != null){
             $idtpspilihan = $pilihtps;
         }else{
-            $idtpspilihan = $listtps[0]->id;
+            if(!empty($listtps) && isset($listtps[0]->id)){
+                $idtpspilihan = $listtps[0]->id;
+            }else{
+                $idtpspilihan = 0;
+            }
         }
 
         if($pilihdapil != null){
             $iddapilpilihan = $pilihdapil;
         }else{
-            $iddapilpilihan = $listdapil[0]->id;
-
+            if(!empty($iddapilpilihan) && isset($iddapilpilihan[0]->id)){
+                $iddapilpilihan = $listdapil[0]->id;
+            }else{
+                $iddapilpilihan = 0;
+            }
         }
         $partaitps = DB::table('detail_suaras')->select('detail_suaras.id_partai', 'detail_suaras.suara_partai', 'partais.nama', 'tps.nama_tps')->join('partais', 'detail_suaras.id_partai', '=', 'partais.id')->join('tps', 'detail_suaras.id_tps', '=', 'tps.id')->where('id_tps', $idtpspilihan)->get();
         $partaidapil = DB::table('dapils')->select('dapils.nama_dapil', 'partais.nama', DB::raw('SUM(detail_suaras.suara_partai) as total_suara_partai'))->join('tps', 'dapils.id', '=', 'tps.id_dapil')->join('detail_suaras', 'tps.id', '=', 'detail_suaras.id_tps')->join('partais', 'detail_suaras.id_partai', '=', 'partais.id')->where('dapils.id', $iddapilpilihan)->groupBy('detail_suaras.id_partai')->get();

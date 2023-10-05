@@ -49,7 +49,10 @@
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
                     <div class="card mb-3">
                         <div class="card-header">
-                            <i class="fa fa-table"></i> Suara Partai per TPS: {{ $tampilnamatps->nama_tps }}
+                            <i class="fa fa-table"></i> Suara Partai per TPS:
+                            @isset($tampilnamatps->nama_tps)
+                                {{ $tampilnamatps->nama_tps }}
+                            @endisset
                         </div>
                         <div class="mx-auto mt-2">
                             <form action="/home" method="POST" class="mx-auto">
@@ -71,7 +74,10 @@
                 <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-4">
                     <div class="card mb-3">
                         <div class="card-header">
-                            <i class="fa fa-table"></i> Suara Partai per Dapil {{ $tampilnamadapil->nama_dapil }}
+                            <i class="fa fa-table"></i> Suara Partai per Dapil
+                            @isset($tampilnamadapil->nama_dapil)
+                                {{ $tampilnamadapil->nama_dapil }}
+                            @endisset
                         </div>
                         <div class="mx-auto mt-2">
                             <form action="/home" method="POST" class="mx-auto">
