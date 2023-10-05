@@ -3,7 +3,7 @@
 <head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		
+		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<title>Tracking Pileg</title>
 		<meta name="description" content="Free Bootstrap 4 Admin Theme | Pike Admin">
 		<meta name="author" content="Pike Web Development - https://www.pikephp.com">
@@ -13,17 +13,17 @@
 
 		<!-- Bootstrap CSS -->
 		<link href="{{ asset("css/bootstrap.min.css") }}" rel="stylesheet" type="text/css" />
-		
+
 		<!-- Font Awesome CSS -->
 		<link href="{{ asset("font-awesome/css/font-awesome.min.css") }}" rel="stylesheet" type="text/css" />
-		
+
 		<!-- Custom CSS -->
 		<link href="{{ asset("css/style.css") }}" rel="stylesheet" type="text/css" />
-		
+
 		<!-- BEGIN CSS for this page -->
 		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
 		<!-- END CSS for this page -->
-		
+
 </head>
 
 <body class="adminbody">
@@ -41,7 +41,7 @@
         <nav class="navbar-custom">
 
                     <ul class="list-inline float-right mb-0">
-                        
+
 						<li class="list-inline-item dropdown notif">
                             <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                 <i class="fa fa-fw fa-bell-o"></i><span class="notif-bullet"></span>
@@ -51,7 +51,7 @@
                                 <div class="dropdown-item noti-title">
                                     <h5><small><span class="label label-danger pull-xs-right">5</span>Allerts</small></h5>
                                 </div>
-								
+
                                 <!-- item-->
                                 <a href="#" class="dropdown-item notify-item">
                                     <div class="notify-icon bg-faded">
@@ -123,22 +123,22 @@
                             <button class="button-menu-mobile open-left">
 								<i class="fa fa-fw fa-bars"></i>
                             </button>
-                        </li>                        
+                        </li>
                     </ul>
 
         </nav>
 
 	</div>
 	<!-- End Navigation -->
-	
- 
+
+
 	<!-- Left Sidebar -->
 	<div class="left main-sidebar">
-	
+
 		<div class="sidebar-inner leftscroll">
 
 			<div id="sidebar-menu">
-        
+
 			<ul>
 
 					@if(Auth::user()->role === 2 )
@@ -181,7 +181,7 @@
             <div class="clearfix"></div>
 
 			</div>
-        
+
 			<div class="clearfix"></div>
 
 		</div>
@@ -191,12 +191,12 @@
 
 
     <div class="content-page">
-	
+
         @yield('content')
 
     </div>
 	<!-- END content-page -->
-    
+
 	<footer class="footer">
 		<span class="text-right">
 		Copyright <a target="_blank" href="#">Your Website</a>
@@ -207,15 +207,13 @@
 	</footer>
 
 </div>
-@else
-<script>window.location = "{{ route('login') }}";</script>
 @endauth
 <!-- END main -->
 @yield('script')
 <script src="{{ asset("js/modernizr.min.js") }}"></script>
 <script src="{{ asset("js/jquery.min.js") }}"></script>
 <script src="{{ asset("js/moment.min.js") }}"></script>
-		
+
 <script src="{{ asset("js/popper.min.js") }}"></script>
 <script src="{{ asset("js/bootstrap.min.js") }}"></script>
 
@@ -234,22 +232,22 @@
 
 	<!-- Counter-Up-->
 	<script src="{{ asset("plugins/waypoints/lib/jquery.waypoints.min.js") }}"></script>
-	<script src="{{ asset("plugins/counterup/jquery.counterup.min.js") }}"></script>			
+	<script src="{{ asset("plugins/counterup/jquery.counterup.min.js") }}"></script>
 
 	<script>
 		$(document).ready(function() {
 			// data-tables
 			$('#example1').DataTable();
-					
+
 			// counter-up
 			$('.counter').counterUp({
 				delay: 10,
 				time: 600
 			});
-		} );		
+		} );
 	</script>
-	
-	<script>
+
+	{{-- <script>
 	var ctx1 = document.getElementById("lineChart").getContext('2d');
 	var lineChart = new Chart(ctx1, {
 		type: 'bar',
@@ -258,13 +256,13 @@
 			datasets: [{
 					label: 'Dataset 1',
 					backgroundColor: '#3EB9DC',
-					data: [10, 14, 6, 7, 13, 9, 13, 16, 11, 8, 12, 9] 
+					data: [10, 14, 6, 7, 13, 9, 13, 16, 11, 8, 12, 9]
 				}, {
 					label: 'Dataset 2',
 					backgroundColor: '#EBEFF3',
 					data: [12, 14, 6, 7, 13, 6, 13, 16, 10, 8, 11, 12]
 				}]
-				
+
 		},
 		options: {
 						tooltips: {
@@ -311,7 +309,7 @@
 			options: {
 				responsive: true
 			}
-	 
+
 	});
 
 
@@ -342,9 +340,9 @@
 			options: {
 				responsive: true
 			}
-	 
+
 	});
-	</script>
+	</script> --}}
 <!-- END Java Script for this page -->
 
 </body>

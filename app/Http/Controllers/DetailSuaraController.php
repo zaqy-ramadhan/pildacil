@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\detail_suara;
-use App\Http\Requests\Storedetail_suaraRequest;
-use App\Http\Requests\Updatedetail_suaraRequest;
+use App\Models\Detail_suara;
+use App\Http\Requests\StoreDetail_suaraRequest;
+use App\Http\Requests\UpdateDetail_suaraRequest;
 
 class DetailSuaraController extends Controller
 {
@@ -27,7 +27,7 @@ class DetailSuaraController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Storedetail_suaraRequest $request)
+    public function store(StoreDetail_suaraRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class DetailSuaraController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(detail_suara $detail_suara)
+    public function show(Detail_suara $Detail_suara)
     {
         //
     }
@@ -43,7 +43,7 @@ class DetailSuaraController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(detail_suara $detail_suara)
+    public function edit(Detail_suara $Detail_suara)
     {
         //
     }
@@ -51,7 +51,7 @@ class DetailSuaraController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Updatedetail_suaraRequest $request, detail_suara $detail_suara)
+    public function update(UpdateDetail_suaraRequest $request, Detail_suara $Detail_suara)
     {
         //
     }
@@ -59,7 +59,7 @@ class DetailSuaraController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(detail_suara $detail_suara)
+    public function destroy(Detail_suara $Detail_suara)
     {
         //
     }

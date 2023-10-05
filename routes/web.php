@@ -8,6 +8,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\TpsController;
 use App\Models\Caleg;
 use App\Models\Partai;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,10 +67,16 @@ Route::group(['middleware' => ['auth', 'role:2']], function () {
     Route::post('/tps/vote', [TpsController::class, 'vote'])->name('tps.vote');
 });
 
-Auth::routes();
+Auth::routes([
+    'register' => false, // Registration Routes...
+    'reset' => false, // Password Reset Routes...
+    'verify' => false, // Email Verification Routes...
+]);
 
 Route::get('/', function () {
-    return view('home');
+    return redirect('/login');;
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::any('/home', [HomeController::class, 'index'])->name('home');
+
+// Route::post('/update-partai-tps', [HomeController::class, 'index']);

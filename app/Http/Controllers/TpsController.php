@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Tps;
 use App\Models\Dapil;
 use App\Models\User;
-use App\Models\detail_suara;
+use App\Models\Detail_suara;
 use App\Models\Caleg;
 use App\Models\Partai;
 use Illuminate\Http\Request;
@@ -17,7 +17,7 @@ class TpsController extends Controller
     public function index()
     {
         $tps = Tps::with('dapil', 'users')->get();
-        $suaras = detail_suara::with('partai')->get();
+        $suaras = Detail_suara::with('partai')->get();
         $dapils = Dapil::all();
         $calegs = Caleg::all()->first();
         $users = User::all();
@@ -29,7 +29,7 @@ class TpsController extends Controller
         $caleg = Caleg::all()->first();
         $partais = Partai::all();
         $tps = Tps::with('dapil', 'users')->where('id_user', Auth::user()->id)->first();
-        $suaras = detail_suara::with('partai')->where('id_tps', $tps->id)->get();
+        $suaras = Detail_suara::with('partai')->where('id_tps', $tps->id)->get();
         return view('tps', compact('tps', 'partais', 'suaras', 'caleg'));
     }
 
@@ -74,11 +74,12 @@ class TpsController extends Controller
         $user->status = 1;
         $user->save();
         $partaiIDs = $request->input('id_partai');
+        // dd($request->suara_partai);
         foreach ($partaiIDs as $key => $value) {
-            detail_suara::create([
+            Detail_suara::create([
                 'id_tps' => $tps->id,
                 'id_partai' => $value,
-                'suara_partai' => $request->suara_partai
+                'suara_partai' => $request->suara_partai[$key]
             ]);
         }
         return redirect()->route('tps.form')->with('success', 'Data TPS berhasil diperbarui.');

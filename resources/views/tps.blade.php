@@ -7,7 +7,7 @@
         <div class="card-header">
             <h3><i class="fa fa-check-square-o"></i> TPS Form</h3>
         </div>
-            
+
         <div class="card-body">
             @if($tps != null)
             <form action="{{ route('tps.vote') }}" method="post">
@@ -42,7 +42,7 @@
               <div class="form-group">
                 <label>Perolehan Suara Partai {{ $partai->nama }}</label>
                 <input type="number" name="id_partai[]" value="{{ $partai->id }}" class="form-control" hidden>
-                <input type="number" name="suara_partai" class="form-control" required>
+                <input type="number" name="suara_partai[]" class="form-control" required>
               </div>
               @endforeach
               @else
@@ -69,8 +69,8 @@
             @else
             <h4>Anda tidak memiliki akses ke TPS</h4>
             @endif
-                                            
-        </div>														
+
+        </div>
     </div><!-- end card-->
 </div>
 
