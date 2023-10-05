@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tps', function (Blueprint $table) {
+        Schema::create('calegs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("id_user");
-            $table->foreignId("id_dapil");
-            $table->string("nama_tps");
-            $table->string("suara_caleg")->nullable();
-            $table->string("alamat");
+            $table->string("nama");
             $table->timestamps();
         });
     }
@@ -27,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tps');
+        Schema::dropIfExists('calegs');
     }
 };

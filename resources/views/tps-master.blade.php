@@ -11,6 +11,8 @@
             
         <div class="card-body">
 
+          <h3 class="text-center">Perolehan Suara @if($calegs) {{ $calegs->nama }} @endif</h3>
+
           @if(Auth::user()->role === 0)          
             <a href="" class="btn btn-success mb-4" data-toggle="modal" data-target="#addModal">New Data</a>
           @endif
@@ -24,9 +26,10 @@
                         <th>Nama TPS</th>
                         <th>Dapil</th>
                         <th>Petugas</th>
-                        <th>Caleg</th>
-                        <th>Partai</th>
-                        <th>Suara</th>
+                        {{-- <th>Caleg</th>
+                        <th>Partai</th> --}}
+                        <th>Suara Caleg</th>
+                        <th>Suara Partai</th>
                         @if(Auth::user()->role === 0) 
                         <th>Action</th>
                         @endif
@@ -41,9 +44,16 @@
                       <td>{{ $data->nama_tps }}</td>
                       <td>{{ $data->dapil->nama_dapil }}</td>
                       <td>{{ $data->users->name }}</td>
-                      <td>{{ $data->nama_caleg }}</td>
-                      <td>{{ $data->partai_caleg }}</td>
-                      <td>{{ $data->perolehan_suara }}</td>
+                      {{-- <td>{{ $data->nama_caleg }}</td>
+                      <td>{{ $data->partai_caleg }}</td> --}}
+                      <td>{{ $data->suara_caleg }}</td>
+                      <td>
+                        @if($suaras)
+                        @foreach($suaras->where('id_tps', $data->id) as $suara)
+                        -{{ $suara->partai->nama }} : {{ $suara->suara_partai }}<br>
+                        @endforeach
+                        @endif
+                      </td>
                       @if(Auth::user()->role === 0) 
                       <td>
                           <a href="#" class="btn btn-warning"  data-toggle="modal" data-target="#editModal{{ $data->id }}">Edit</a>
@@ -94,7 +104,7 @@
                                                 </select>
                                               </div>
 
-                                              <div class="form-group">
+                                              {{-- <div class="form-group">
                                                 <label>Caleg</label>
                                                 <input name="nama_caleg" value="{{ $data->nama_caleg }}" type="text" class="form-control">
                                               </div>
@@ -102,7 +112,7 @@
                                               <div class="form-group">
                                                 <label>Partai</label>
                                                 <input name="partai_caleg" value="{{ $data->partai_caleg }}" type="text" class="form-control">
-                                              </div>
+                                              </div> --}}
                                 
                                               <button type="submit" class="btn btn-primary">Submit</button>
                                           </form>
@@ -163,7 +173,7 @@
                 </select>
               </div>
 
-              <div class="form-group">
+              {{-- <div class="form-group">
                 <label>Caleg</label>
                 <input name="nama_caleg" type="text" class="form-control">
               </div>
@@ -171,7 +181,7 @@
               <div class="form-group">
                 <label>Partai</label>
                 <input name="partai_caleg" type="text" class="form-control">
-              </div>
+              </div> --}}
 
               <button type="submit" class="btn btn-primary">Submit</button>
           </form>

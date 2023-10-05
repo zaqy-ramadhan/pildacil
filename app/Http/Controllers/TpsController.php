@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Tps;
 use App\Models\Dapil;
 use App\Models\User;
+use App\Models\detail_suara;
+use App\Models\Caleg;
+use App\Models\Partai;
 use Illuminate\Http\Request;
 
 class TpsController extends Controller
@@ -14,15 +17,20 @@ class TpsController extends Controller
     public function index()
     {
         $tps = Tps::with('dapil', 'users')->get();
+        $suaras = detail_suara::with('partai')->get();
         $dapils = Dapil::all();
+        $calegs = Caleg::all()->first();
         $users = User::all();
-        return view('tps-master', compact('tps', 'dapils', 'users'));
+        return view('tps-master', compact('tps', 'dapils', 'users', 'calegs', 'suaras'));
     }
 
     public function form()
     {
+        $caleg = Caleg::all()->first();
+        $partais = Partai::all();
         $tps = Tps::with('dapil', 'users')->where('id_user', Auth::user()->id)->first();
-        return view('tps', compact('tps'));
+        $suaras = detail_suara::with('partai')->where('id_tps', $tps->id)->get();
+        return view('tps', compact('tps', 'partais', 'suaras', 'caleg'));
     }
 
     public function create()
@@ -32,9 +40,7 @@ class TpsController extends Controller
 
     public function store(Request $request)
     {
-        // Validasi request di sini sesuai kebutuhan
-
-        Tps::create($request->all());
+        $tps = Tps::create($request->all());
         return redirect()->route('tps.index')->with('success', 'Data TPS berhasil ditambahkan.');
     }
 
@@ -62,10 +68,19 @@ class TpsController extends Controller
     public function vote(Request $request)
     {
         $tps = Tps::find($request->id);
-        $tps->update($request->all());
+        $tps->suara_caleg = $request->suara_caleg;
+        $tps->save();
         $user = User::find(Auth::user()->id);
         $user->status = 1;
         $user->save();
+        $partaiIDs = $request->input('id_partai');
+        foreach ($partaiIDs as $key => $value) {
+            detail_suara::create([
+                'id_tps' => $tps->id,
+                'id_partai' => $value,
+                'suara_partai' => $request->suara_partai
+            ]);
+        }
         return redirect()->route('tps.form')->with('success', 'Data TPS berhasil diperbarui.');
     }
 

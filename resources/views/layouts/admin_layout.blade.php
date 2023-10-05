@@ -167,6 +167,14 @@
                     <li class="submenu">
 						<a href="{{ route('users.index') }}"><i class="fa fa-fw fa-user"></i>User</a>
                     </li>
+
+					<li class="submenu">
+						<a href="{{ route('caleg.index') }}"><i class="fa fa-fw fa-address-card"></i>Caleg</a>
+                    </li>
+
+					<li class="submenu">
+						<a href="{{ route('partai.index') }}"><i class="fa fa-fw fa-flag"></i>Partai</a>
+                    </li>
 					@endif
             </ul>
 

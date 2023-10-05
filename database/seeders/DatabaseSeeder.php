@@ -14,9 +14,35 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        \App\Models\User::factory()->create([
+            'name' => 'Super Admin',
+            'email' => 'super@admin.com',
+            'password' => 'super123',
+            'role' => '0',
+        ]);
+
+        \App\Models\Partai::factory()->create([
+            'nama' => 'PDIP',
+        ]);
+
+        \App\Models\Partai::factory()->create([
+            'nama' => 'PAN',
+        ]);
+
+        \App\Models\Partai::factory()->create([
+            'nama' => 'Demokrat',
+        ]);
+
+        \App\Models\Partai::factory()->create([
+            'nama' => 'PPP',
+        ]);
+
+        \App\Models\Partai::factory()->create([
+            'nama' => 'Gerindra',
+        ]);
+
+        \App\Models\Caleg::factory()->create([
+            'nama' => 'Prama',
+        ]);
     }
 }

@@ -5,16 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class dapil extends Model
+class Caleg extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'nama_dapil'
+        'nama'
     ];
-
-    public function tps()
-    {
-        return $this->hasMany(Tps::class);
-    }
 }

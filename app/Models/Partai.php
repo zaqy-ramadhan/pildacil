@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class dapil extends Model
+class Partai extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'nama_dapil'
+        'nama',
     ];
 
-    public function tps()
+    public function suara()
     {
-        return $this->hasMany(Tps::class);
+        return $this->hasMany(detail_suara::class);
     }
 }

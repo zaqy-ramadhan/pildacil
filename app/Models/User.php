@@ -47,6 +47,6 @@ class User extends Authenticatable
 
     public function tps()
     {
-        return $this->hasMany(tps::class);
+        return $this->hasMany(Tps::class);
     }
 }

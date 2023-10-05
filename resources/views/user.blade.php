@@ -108,7 +108,6 @@
                                             <div class="form-group">
                                               <label>Nama</label>
                                               <input name="name" type="text" class="form-control" required>
-                                              <input type="text" name="password" value="12345678" hidden>
                                             </div>
                               
                                             <div class="form-group">
@@ -130,13 +129,10 @@
                                               </select>
                                             </div>
 
-                                            {{-- <div class="form-group">
-                                                <label>Penugasan</label>
-                                                <select class="form-control" name="tps" id="">
-                                                  <option value=""></option>
-                                                  <option value=""></option>
-                                                </select>
-                                              </div> --}}
+                                            <div class="form-group">
+                                              <label>Password</label>
+                                              <input name="password" type="text" class="form-control" required>
+                                            </div>
                               
                                             <button type="submit" class="btn btn-primary">Submit</button>
                                           </form>

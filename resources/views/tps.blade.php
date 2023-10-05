@@ -25,12 +25,7 @@
 
               <div class="form-group">
                 <label>Nama Caleg</label>
-                <input type="text" value="{{ $tps->nama_caleg }}" class="form-control" disabled>
-              </div>
-
-              <div class="form-group">
-                <label>Partai</label>
-                <input type="text" value="{{ $tps->partai_caleg }}" class="form-control" disabled>
+                <input type="text" value="{{ $caleg->nama }}" class="form-control" disabled>
               </div>
 
               <div class="form-group">
@@ -40,19 +35,32 @@
 
               @if(Auth::user()->status == 0)
               <div class="form-group">
-                <label>Perolehan Suara</label>
-                <input type="number" name="perolehan_suara" class="form-control" required>
+                <label>Perolehan Suara Caleg</label>
+                <input type="number" name="suara_caleg" class="form-control" required>
               </div>
+              @foreach($partais as $partai)
+              <div class="form-group">
+                <label>Perolehan Suara Partai {{ $partai->nama }}</label>
+                <input type="number" name="id_partai[]" value="{{ $partai->id }}" class="form-control" hidden>
+                <input type="number" name="suara_partai" class="form-control" required>
+              </div>
+              @endforeach
               @else
               <div class="form-group">
                 <label>Perolehan Suara</label>
-                <input type="number" value="{{ $tps->perolehan_suara }}" name="perolehan_suara" class="form-control" disabled>
+                <input type="number" value="{{ $tps->suara_caleg }}" name="suara_caleg" class="form-control" disabled>
               </div>
+              @foreach($suaras as $suara)
+              <div class="form-group">
+                <label>Perolehan Suara Partai {{ $suara->partai->nama }}</label>
+                <input type="number" name="suara_partai" value="{{ $suara->suara_partai }}" class="form-control" disabled>
+              </div>
+              @endforeach
               @endif
 
               <div class="form-check mb-4">
                 <label class="form-check-label">
-                  <input type="checkbox" class="form-check-input">
+                  <input type="checkbox" class="form-check-input" required>
                   Saya telah mengisi form ini dengan benar
                 </label>
               </div>

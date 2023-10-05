@@ -1,9 +1,13 @@
 <?php
 
 use App\Http\Controllers\DapilController;
+use App\Http\Controllers\PartaiController;
+use App\Http\Controllers\CalegController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TpsController;
+use App\Models\Caleg;
+use App\Models\Partai;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +39,18 @@ Route::group(['middleware' => ['auth', 'role:0']], function () {
     Route::post('/dapils/update', [DapilController::class, 'update'])->name('dapils.update');
     Route::post('/dapils/store', [DapilController::class, 'store'])->name('dapils.store');
     Route::delete('/dapils/{id}', [DapilController::class, 'destroy']);
+
+    //route caleg
+    Route::get('/caleg', [CalegController::class, 'index'])->name('caleg.index');
+    Route::post('/caleg/update', [CalegController::class, 'update'])->name('caleg.update');
+    Route::post('/caleg/store', [CalegController::class, 'store'])->name('caleg.store');
+    Route::delete('/caleg/{id}', [CalegController::class, 'destroy']);
+
+    //route partai
+    Route::get('/partai', [PartaiController::class, 'index'])->name('partai.index');
+    Route::post('/partai/update', [PartaiController::class, 'update'])->name('partai.update');
+    Route::post('/partai/store', [PartaiController::class, 'store'])->name('partai.store');
+    Route::delete('/partai/{id}', [PartaiController::class, 'destroy']);
 });
 
 //admin & superadmin

@@ -14,8 +14,6 @@ class tps extends Model
         'id_user',
         'id_dapil',
         'nama_tps',
-        'nama_caleg',
-        'partai_caleg',
         'perolehan_suara',
     ];
 
@@ -27,5 +25,10 @@ class tps extends Model
     public function dapil()
     {
         return $this->belongsTo(Dapil::class, 'id_dapil', 'id');
+    }
+
+    public function suara()
+    {
+        return $this->hasMany(detail_suara::class);
     }
 }
